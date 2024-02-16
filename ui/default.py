@@ -126,7 +126,7 @@ def message_display(weather,datetime):
     if message_num == 0:
         #d.text('       ',5,40,color=0x000000,size=16) #清除显示残留
         d.fill_rect(5, 40, 155, 20, BLACK)  # 清除显示残留
-        if len(weather[3]) < 4:  # 3个字以内
+        if len(weather[3]) < 5:  # 4个字以内
             d.text('实时天气 ', 5, 40, color=WHITE, size=16)
             d.text(weather[3], 160 - len(weather[3]) * 16, 40, color=WHITE, size=16)
         elif len(weather[3]) < 8:  # 7个字以内
@@ -197,7 +197,7 @@ def message_display(weather,datetime):
     #今天天气
     elif message_num == 1:
         d.fill_rect(5,40,155,20,BLACK)#清除显示残留
-        if len(weather[0])<4: #3个字以内
+        if len(weather[0])<5: #4个字以内
             d.text('今天天气 ',5,40,color=WHITE,size=16)
             d.text(weather[0], 160-len(weather[0])*16, 40, color=WHITE, size=16)
         elif len(weather[0])<8: #7个字以内
