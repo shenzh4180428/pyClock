@@ -93,30 +93,7 @@ def weather_display(city,weather):
 
 
 
-    #实时温度
-    tmp = round(aht.temperature, 1)
-    d.bmp("/data/picture/default/temp.bmp",5,90)
-    d.rect(30, 92, 48, 10, WHITE)
-    d.fill_rect(31, 93, int(tmp/50*48), 8, RED)
-    #d.text('   ', 100, 177) #消除重影
-    d.text(str(tmp), 80, 88, color=RED)
-    d.text('℃',115,88,color=WHITE)
 
-
-
-    #实时湿度
-    humidity = round(aht.relative_humidity,1)
-    d.bmp("/data/picture/default/humi.bmp",5,110)
-    d.rect(30, 112, 48, 10, WHITE)
-    d.fill_rect(31, 113, int(humidity/100*48), 8, DEEPGREEN)
-    if humidity == 100:
-        d.text(str(humidity), 88, 108, DEEPGREEN)
-        print(humidity)
-    else:
-        #d.text('   ', 100, 100, BLACK) #消除100%的重影
-        d.fill_rect(80,108,50,30,BLACK)
-        d.text(str(humidity), 80, 108, DEEPGREEN)
-    d.text('%',115,108,color=WHITE)
 
 def message_display(weather,datetime):
 
@@ -233,6 +210,29 @@ def message_display(weather,datetime):
         d.text('最高温度 ',5,40,color=WHITE,size=16)
         d.text(weather[2], 140-len(weather[2])*10, 40, color=WHITE, size=16)
         d.text('℃',148,40,color=WHITE,size=16)
+
+    # 实时温度
+    tmp = round(aht.temperature, 1)
+    d.bmp("/data/picture/default/temp.bmp", 5, 90)
+    d.rect(30, 92, 48, 10, WHITE)
+    d.fill_rect(31, 93, int(tmp / 50 * 48), 8, RED)
+    # d.text('   ', 100, 177) #消除重影
+    d.text(str(tmp), 80, 88, color=RED)
+    d.text('℃', 115, 88, color=WHITE)
+
+    # 实时湿度
+    humidity = round(aht.relative_humidity, 1)
+    d.bmp("/data/picture/default/humi.bmp", 5, 110)
+    d.rect(30, 112, 48, 10, WHITE)
+    d.fill_rect(31, 113, int(humidity / 100 * 48), 8, DEEPGREEN)
+    if humidity == 100:
+        d.text(str(humidity), 88, 108, DEEPGREEN)
+        print(humidity)
+    else:
+        # d.text('   ', 100, 100, BLACK) #消除100%的重影
+        d.fill_rect(80, 108, 50, 30, BLACK)
+        d.text(str(humidity), 80, 108, DEEPGREEN)
+    d.text('%', 115, 108, color=WHITE)
 
     #动态信息显示选择
     message_num = message_num + 1
