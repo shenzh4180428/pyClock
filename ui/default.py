@@ -215,6 +215,7 @@ def message_display(weather,datetime):
     tmp = round(aht.temperature, 1)
     d.bmp("/data/picture/default/temp.bmp", 5, 90)
     d.rect(30, 92, 48, 10, WHITE)
+    d.fill_rect(31, 93, 46, 8, BLACK)#清除显示残留
     d.fill_rect(31, 93, int(tmp / 50 * 48), 8, RED)
     # d.text('   ', 100, 177) #消除重影
     d.text(str(tmp), 80, 88, color=RED)
@@ -224,6 +225,7 @@ def message_display(weather,datetime):
     humidity = round(aht.relative_humidity, 1)
     d.bmp("/data/picture/default/humi.bmp", 5, 110)
     d.rect(30, 112, 48, 10, WHITE)
+    d.fill_rect(31, 113, 46, 8, BLACK)#清除显示残留
     d.fill_rect(31, 113, int(humidity / 100 * 48), 8, DEEPGREEN)
     if humidity == 100:
         d.text(str(humidity), 88, 108, DEEPGREEN)
