@@ -19,6 +19,7 @@ from ui import photo_album #相册主题
 
 ui_qty = 3 #UI总数量
 ui_choice = 0 #初始UI标志位
+key2_status=1 #初始化亮屏标志位：1表示亮屏0表示息屏
 
 ########################
 # 构建1.8寸LCD对象并初始化
@@ -281,8 +282,10 @@ def city_get():
 
     f.close()
 
-#按键
+#按键1
 KEY=Pin(3,Pin.IN,Pin.PULL_UP) #构建KEY对象
+#按键2
+KEY2=Pin(8,Pin.IN,Pin.PULL_UP) #构建KEY对象
 
 #按键中断触发
 def key(KEY):
@@ -314,7 +317,22 @@ def key(KEY):
                 machine.reset() #重启开发板。
 
 
-KEY.irq(key,Pin.IRQ_FALLING) #定义中断，下降沿触发
+#按键中断触发
+def key2(KEY2):
+
+    global key2_status
+    time.sleep_ms(10) #消除抖动
+    if KEY2.value() == 0: #确认按键被按下
+        if key2_status == 1 : #UI数量
+            key2_status =0
+            global_var.dp.back_light(0)
+        else:
+            key2_status=1
+            global_var.dp.back_light(255)
+
+
+KEY.irq(key,Pin.IRQ_FALLING) #定义按键1中断，下降沿触发
+KEY2.irq(key2,Pin.IRQ_FALLING) #定义按键2中断，下降沿触发
 
 ################
 #    主程序    #
